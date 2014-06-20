@@ -2,7 +2,7 @@
 module MagicNumbers
 	BUFFER_SIZE = 10
 	MIN_AMP, MAX_AMP = 0.7, 1.3
-	MIN_PHASE, MAX_PHASE = 350, 650
+	MIN_PHASE, MAX_PHASE = 400, 800
 	SCROLL_SPEED = 5
 end
 class Terrain
@@ -60,9 +60,13 @@ class Terrain
 	end  
 
 	def getCurrentSlope(x = 0)
-		return @amplitudeBuffer[0] * Math::cos((2 * Math::PI / @phaseBuffer[0]) * x) *@window.height / 4.0
+		if (@offset + x > @phaseBuffer[0])
+			return @amplitudeBuffer[1] * Math::cos((2 * Math::PI / @phaseBuffer[1]) * (@offset + x -  @phaseBuffer[0]))
+		else
+			return @amplitudeBuffer[0] * Math::cos((2 * Math::PI / @phaseBuffer[0]) * (@offset + x))
+		end
 	end
-	
+
 	def draw(window, dx, dy)
 		red = Gosu::Color.argb(0xffff0000)
 		if (@terrainBuffer[@offset] == nil)

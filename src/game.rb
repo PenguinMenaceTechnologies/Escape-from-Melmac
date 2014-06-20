@@ -34,6 +34,10 @@ class GameWindow < Gosu::Window
 		@rainbow_table = Array.new
 		@rainbow_image = Gosu::Image.new(self, "../resources/graphics/rainbow.png", false)
 		@background = Gosu::Image.new(self, "../resources/graphics/background.png", true)
+		@backgroundScaleX = (10 + width) / @background.width.to_f
+		@backgroundScaleY = (10 + height) / @background.height.to_f
+		puts @backgroundScaleX
+		puts @backgroundScaleY
 		@rainbow_offset = 0
 		self.caption = caption
 
@@ -91,7 +95,7 @@ class GameWindow < Gosu::Window
 		end
 		if (@background)
 			#puts "Background image width: #{@background.width} height: #{@background.height}"
-        	@background.draw(dx - 5, dy - 5, 0, 0.5, 0.5)#@background.width / @width, @background.height / @height)
+        	@background.draw(dx - 5, dy - 5, 0, @backgroundScaleX, @backgroundScaleY)#@background.width / @width, @background.height / @height)
         end
 		rainbow @cat.x, @cat.y, dx, dy
         @gameObjects.each do |a|
