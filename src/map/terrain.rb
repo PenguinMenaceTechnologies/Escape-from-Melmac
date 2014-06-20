@@ -12,6 +12,7 @@ class Terrain
 		@randomness = randomness
 		@terrainBuffer = Array.new(MagicNumbers::BUFFER_SIZE)
 		@phaseBuffer = Array.new
+		@amplitudeBuffer = Array.new
 		@offset = 0
 		@window = window
 		initTerrain()
@@ -38,6 +39,7 @@ class Terrain
 			# delete old phase length
 			currentPhase = @phaseBuffer.shift()
 			@terrainBuffer.shift(currentPhase)
+			@amplitudeBuffer.shift()
 			# fill new hill
 			fillBuffer()
 		end
@@ -47,6 +49,7 @@ class Terrain
 		currentPhase = rand(MagicNumbers::MIN_PHASE..MagicNumbers::MAX_PHASE)
 		@phaseBuffer.push(currentPhase)
 		currentAmplitude = rand(MagicNumbers::MIN_AMP..MagicNumbers::MAX_AMP)
+		@amplitudeBuffer.push(currentAmplitude)
 		# add new values to terrain height array
 		
 		i = 0
@@ -56,6 +59,10 @@ class Terrain
 		end
 	end  
 
+	def getCurrentSlope(x = 0)
+		return @amplitudeBuffer[0] * Math::cos((2 * Math::PI / @phaseBuffer[0]) * x)
+	end
+	
 	def draw(window, dx, dy)
 		red = Gosu::Color.argb(0xffff0000)
 		if (@terrainBuffer[@offset] == nil)
