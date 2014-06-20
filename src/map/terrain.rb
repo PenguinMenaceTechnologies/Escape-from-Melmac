@@ -3,6 +3,7 @@ module MagicNumbers
 	BUFFER_SIZE = 2560
 	MIN_AMP, MAX_AMP = 0.7, 1.3
 	MIN_PHASE, MAX_PHASE = 350, 650
+	SCROLL_SPEED = 5
 end
 class Terrain
 	attr_reader :terrainBuffer
@@ -12,6 +13,7 @@ class Terrain
 		@terrainBuffer = Array.new(MagicNumbers::BUFFER_SIZE)
 		@phaseBuffer = Array.new
 		@offset = 0
+		@window = window
 		fillBuffer()
 		window.addGameObject self
 	end
@@ -34,6 +36,10 @@ class Terrain
 		end
 
 		puts @phaseBuffer
+	end
+
+	def get_height x = 0
+        return (@terrainBuffer[x + @offset] * @window.height / 4)
 	end
 
 	def update(elapsedTime)

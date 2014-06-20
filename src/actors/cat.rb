@@ -6,7 +6,7 @@ class Cat < Actor
   def initialize window, img, sound, terrain
     super window, img, sound, "cat"
 
-    @gravity = -98.1 # trololo
+    @gravity = -18.81 # trololo
   	@accelerate = 0
   	self.warp 100, 50
   	@speed = 1.0
@@ -20,11 +20,11 @@ class Cat < Actor
   	prev_y = self.y
   	self.vel_y = self.vel_y + @gravity * elapsed_time
   	self.vel_y = self.vel_y - @accelerate
-  	self.y = self.vel_y * elapsed_time + self.y
+  	self.y = self.vel_y * 4 * elapsed_time + self.y
 
     # collide with terrain
-  	if self.y < @terrain.terrainBuffer[self.x]
-      self.y = @terrain.terrainBuffer[self.x]
+  	if self.y < @terrain.get_height(self.x)
+      self.y = @terrain.get_height(self.x)
       @boooom = true
   	else
       @boooom = false
@@ -48,7 +48,7 @@ class Cat < Actor
   	if active
       @accelerate = 1
     else
-	  @accelerate = 0
+	    @accelerate = 0
     end
   end
 

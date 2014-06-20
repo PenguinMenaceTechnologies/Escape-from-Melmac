@@ -10,11 +10,17 @@
 require 'rubygems'
 require 'gosu'
 require './state.rb'
+require './point.rb'
 require './states/menu.rb'
 require './map/terrain.rb'
 require './actors/actor.rb'
 require './actors/cat.rb'
 require './actors/alf.rb'
+
+
+module MagicNumbers
+	SCROLL_SPEED = 5
+end
 
 class GameWindow < Gosu::Window
 	attr_reader :currentState
@@ -25,6 +31,8 @@ class GameWindow < Gosu::Window
 		@width = width
 		@height = height
 		@gameObjects = Array.new
+		@rainbow_table = Array.new
+		@rainbow_image = Gosu::Image.new(self, "../resources/graphics/rainbow.png", false)
 		self.caption = caption
 
 		# Set the current state to main menu
@@ -49,9 +57,30 @@ class GameWindow < Gosu::Window
 		end
 	end
 
+	def rainbow x, y, dx, dy
+		i = 0
+		until i >= x do
+			@rainbow_table[i] = @rainbow_table[i + MagicNumbers::SCROLL_SPEED]
+		    i += 1
+		end
+		i = x - MagicNumbers::SCROLL_SPEED
+		until i > x do
+		  @rainbow_table[i] = y
+		  i += 1
+	    end
+		i = 0
+		until i > x do
+			if @rainbow_table[i] != nil
+		       @rainbow_image.draw_rot(i + dx, self.height / 2 - @rainbow_table[i] + dy + Math.sin(0.1*i)*5, 1, 0)
+		    end
+		    i += 1
+	    end
+	end
+
 	# Override inherited draw method
 	def draw
 		shaky = @cat.boooom
+		window = self
 		dx = 0
 		dy = 0
 		if shaky 
@@ -62,9 +91,10 @@ class GameWindow < Gosu::Window
 			#puts "Background image width: #{@background.width} height: #{@background.height}"
         	@background.draw(dx, dy, 0)
         end
+		rainbow @cat.x, @cat.y, dx, dy
         @gameObjects.each do |a|
           if defined? a.draw
-            a.draw self, dx, dy
+            a.draw window, dx, dy
           end
 		end
 	end
