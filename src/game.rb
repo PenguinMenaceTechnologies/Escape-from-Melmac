@@ -11,6 +11,7 @@ require 'rubygems'
 require 'gosu'
 require './state.rb'
 require './states/menu.rb'
+require './map/terrain.rb'
 
 class GameWindow < Gosu::Window
 	attr_reader :currentState
@@ -25,6 +26,7 @@ class GameWindow < Gosu::Window
 
 		# Set the current state to main menu
 		@currentState = Menu.new(self)
+		@terrain = Terrain.new
 	end
 
     def addGameObject gameObject
