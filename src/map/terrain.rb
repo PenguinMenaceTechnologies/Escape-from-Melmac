@@ -31,7 +31,7 @@ class Terrain
 		end
 	end
 
-	def draw(window)
+	def draw(window, dx, dy)
 		red = Gosu::Color.argb(0xffff0000)
 		i = 0
 		while i < window.width do

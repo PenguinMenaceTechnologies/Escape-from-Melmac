@@ -1,6 +1,7 @@
 class Cat < Actor
 
   attr_reader :speed
+  attr_accessor :boooom
 
   def initialize window, img, sound, terrain
     super window, img, sound, "cat"
@@ -24,7 +25,10 @@ class Cat < Actor
     # collide with terrain
   	if self.y < @terrain.terrainBuffer[self.x]
       self.y = @terrain.terrainBuffer[self.x]
-  	end
+      @boooom = true
+  	else
+      @boooom = false
+    end
 
   	# update velocity to actual velocity.
   	self.vel_y = prev_y - self.y
