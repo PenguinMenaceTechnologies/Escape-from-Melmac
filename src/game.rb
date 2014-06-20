@@ -30,8 +30,8 @@ class GameWindow < Gosu::Window
 		# Set the current state to main menu
 		@currentState = Menu.new(self)
 		@terrain = Terrain.new self
-        cat = Cat.new self, "../resources/graphics/garfield_sliding.png", "../resources/music/cantina_band.ogg", @terrain
-        alf = Alf.new self, "../resources/graphics/Earth.png", "../resources/music/cantina_band.ogg", @terrain, cat
+        @cat = Cat.new self, "../resources/graphics/garfield_sliding.png", "../resources/music/cantina_band.ogg", @terrain
+        @alf = Alf.new self, "../resources/graphics/Earth.png", "../resources/music/cantina_band.ogg", @terrain, @cat
 	end
 
     def addGameObject gameObject
@@ -51,13 +51,20 @@ class GameWindow < Gosu::Window
 
 	# Override inherited draw method
 	def draw
+		shaky = @cat.boooom
+		dx = 0
+		dy = 0
+		if shaky 
+         dx = rand (-5..5)
+         dy = rand (-5..5)
+		end
 		if (@background)
 			#puts "Background image width: #{@background.width} height: #{@background.height}"
-        	@background.draw(0, 0, 0, 0.2, 0.2)
+        	@background.draw(dx, dy, 0)
         end
         @gameObjects.each do |a|
           if defined? a.draw
-            a.draw self
+            a.draw self, dx, dy
           end
 		end
 	end

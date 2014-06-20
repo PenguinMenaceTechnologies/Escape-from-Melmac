@@ -21,7 +21,7 @@ class Actor
   def update elapsed_time = 0.16
   end
 
-  def draw window
-    @image.draw_rot(@x, window.height / 2 - @y, 1, @angle)
+  def draw window, dx, dy
+    @image.draw_rot(@x + dx, window.height / 2 - @y + dy, 1, @angle)
   end
 end
