@@ -28,6 +28,9 @@ class Terrain
 	end
 
 	def get_height x = 0
+		if @terrainBuffer[x + @offset] == nil
+			return 0
+		end
         return (@terrainBuffer[x + @offset] * @window.height / 4) - @window.height / 6
 	end
 
