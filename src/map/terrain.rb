@@ -62,7 +62,7 @@ class Terrain
 	def getCurrentSlope(x = 0)
 		return @amplitudeBuffer[0] * Math::cos((2 * Math::PI / @phaseBuffer[0]) * x)
 	end
-	
+
 	def draw(window, dx, dy)
 		red = Gosu::Color.argb(0xffff0000)
 		if (@terrainBuffer[@offset] == nil)
