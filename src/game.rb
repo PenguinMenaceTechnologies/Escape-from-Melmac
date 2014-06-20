@@ -33,6 +33,7 @@ class GameWindow < Gosu::Window
 		@gameObjects = Array.new
 		@rainbow_table = Array.new
 		@rainbow_image = Gosu::Image.new(self, "../resources/graphics/rainbow.png", false)
+		@rainbow_offset = 0
 		self.caption = caption
 
 		# Set the current state to main menu
@@ -71,10 +72,11 @@ class GameWindow < Gosu::Window
 		i = 0
 		until i > x do
 			if @rainbow_table[i] != nil
-		       @rainbow_image.draw_rot(i + dx, self.height / 2 - @rainbow_table[i] + dy + Math.sin(0.1*i)*5, 1, 0)
+		       @rainbow_image.draw_rot(i + dx, self.height / 2 - @rainbow_table[i] + dy + Math.sin(0.1*(i+@rainbow_offset))*5, 1, 0)
 		    end
 		    i += 1
 	    end
+	    @rainbow_offset += 5
 	end
 
 	# Override inherited draw method
