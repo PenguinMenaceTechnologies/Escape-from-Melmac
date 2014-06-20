@@ -6,7 +6,7 @@ class Cat < Actor
   def initialize window, img, sound, terrain
     super window, img, sound, "cat"
 
-    @gravity = -18.81 # trololo
+    @gravity = -1.81 # trololo
   	@accelerate = 0
   	self.warp 100, 50
   	@speed = 1.0
@@ -18,20 +18,28 @@ class Cat < Actor
 
   def update elapsed_time = 0.16
   	prev_y = self.y
-  	self.vel_y = self.vel_y + @gravity * elapsed_time
-  	self.vel_y = self.vel_y - @accelerate
-  	self.y = self.vel_y * 4 * elapsed_time + self.y
+  	self.vel_y += @gravity * elapsed_time
+  	self.vel_y -= @accelerate
+    if self.vel_y < -100
+      self.vel_y = -100
+    end
+  	self.y += self.vel_y * elapsed_time * 2
 
     # collide with terrain
   	if self.y < @terrain.get_height(self.x)
       self.y = @terrain.get_height(self.x)
+      #self.vel_y = @terrain. + 1.0
       @boooom = true
   	else
       @boooom = false
     end
 
   	# update velocity to actual velocity.
-  	self.vel_y = prev_y - self.y
+  	# self.vel_y = self.y - prev_y 
+    if self.vel_y > 40
+      self.vel_y = 40
+    end
+    puts self.vel_y
   end
 
   # modify the speed required for effects

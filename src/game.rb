@@ -50,7 +50,7 @@ class GameWindow < Gosu::Window
 	# Override ineherited update mehtod
 	def update
 		@background = Gosu::Image.new(self, backgroundImage, true)
-		elapsed_time = 0.16
+		elapsed_time = 0.16 * @cat.speed
 		@gameObjects.each do |a|
 		  if defined? a.update
             a.update elapsed_time
@@ -76,7 +76,7 @@ class GameWindow < Gosu::Window
 		    end
 		    i += 1
 	    end
-	    @rainbow_offset += 5
+	    @rainbow_offset += MagicNumbers::SCROLL_SPEED
 	end
 
 	# Override inherited draw method
