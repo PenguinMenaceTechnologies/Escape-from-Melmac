@@ -30,7 +30,7 @@ class GameWindow < Gosu::Window
 		# Set the current state to main menu
 		@currentState = Menu.new(self)
 		@terrain = Terrain.new self
-        cat = Cat.new self, "../resources/graphics/Earth.png", "../resources/music/cantina_band.ogg", @terrain
+        cat = Cat.new self, "../resources/graphics/garfield_sliding.png", "../resources/music/cantina_band.ogg", @terrain
         alf = Alf.new self, "../resources/graphics/Earth.png", "../resources/music/cantina_band.ogg", @terrain, cat
 	end
 

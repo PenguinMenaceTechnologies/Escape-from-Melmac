@@ -5,9 +5,9 @@ class Cat < Actor
   def initialize window, img, sound, terrain
     super window, img, sound, "cat"
 
-    @gravity = -9.81 # trololo
+    @gravity = -98.1 # trololo
   	@accelerate = 0
-  	self.warp 20, 0
+  	self.warp 100, 50
   	@speed = 1.0
   	@terrain = terrain
 
