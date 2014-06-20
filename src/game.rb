@@ -63,6 +63,6 @@ class GameWindow < Gosu::Window
 	end
 end
 
-# Start the game
-window = GameWindow.new(720, 360, "Escape from Melmac")
+# Start the game720
+window = GameWindow.new(1280, 720, "Escape from Melmac")
 window.show
