@@ -28,11 +28,11 @@ class Terrain
 	end
 
 	def get_height x = 0
-        return (@terrainBuffer[x + @offset] * @window.height / 4)
+        return (@terrainBuffer[x + @offset] * @window.height / 4) - @window.height / 6
 	end
 
 	def update(elapsedTime)
-		@offset += 5
+		@offset += 5 * elapsedTime / 0.16
 
 		if (@offset > @phaseBuffer[0])
 			@offset -= @phaseBuffer[0]
@@ -60,7 +60,7 @@ class Terrain
 	end  
 
 	def getCurrentSlope(x = 0)
-		return @amplitudeBuffer[0] * Math::cos((2 * Math::PI / @phaseBuffer[0]) * x)
+		return @amplitudeBuffer[0] * Math::cos((2 * Math::PI / @phaseBuffer[0]) * x) *@window.height / 4.0
 	end
 
 	def draw(window, dx, dy)
