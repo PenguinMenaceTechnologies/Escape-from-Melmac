@@ -12,6 +12,9 @@ require 'gosu'
 require './state.rb'
 require './states/menu.rb'
 require './map/terrain.rb'
+require './actors/actor.rb'
+require './actors/cat.rb'
+require './actors/alf.rb'
 
 class GameWindow < Gosu::Window
 	attr_reader :currentState
@@ -27,6 +30,8 @@ class GameWindow < Gosu::Window
 		# Set the current state to main menu
 		@currentState = Menu.new(self)
 		@terrain = Terrain.new self
+        cat = Cat.new self, "../resources/graphics/Earth.png", "../resources/music/cantina_band.ogg", @terrain
+        alf = Alf.new self, "../resources/graphics/Earth.png", "../resources/music/cantina_band.ogg", @terrain, cat
 	end
 
     def addGameObject gameObject
@@ -60,6 +65,4 @@ end
 
 # Start the game
 window = GameWindow.new(720, 360, "Escape from Melmac")
-#cat = Cat.new window, "media/Starfighter.bmp", "media/Beep.wav", terrain
-#alf = Alf.new window, "media/Starfighter.bmp", "media/Beep.wav", terrain, cat
 window.show
