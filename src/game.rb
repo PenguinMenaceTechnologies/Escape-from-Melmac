@@ -11,6 +11,7 @@ require 'rubygems'
 require 'gosu'
 require './state.rb'
 require './states/menu.rb'
+require './map/terrain.rb'
 
 class GameWindow < Gosu::Window
 	attr_reader :currentState
@@ -24,6 +25,7 @@ class GameWindow < Gosu::Window
 
 		# Set the current state to main menu
 		@currentState = Menu.new(self)
+		@terrain = Terrain.new
 	end
 
 	# Override ineherited update mehtod
@@ -37,6 +39,7 @@ class GameWindow < Gosu::Window
 			#puts "Background image width: #{@background.width} height: #{@background.height}"
         	@background.draw(0, 0, 0, 0.2, 0.2)
         end
+        @terrain.draw(self)
 	end
 end
 
