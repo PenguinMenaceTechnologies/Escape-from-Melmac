@@ -7,7 +7,7 @@ class Alf < Actor
   	self.warp -400, 0
   end
 
-  def update elapsed_time = 0.16
+  def update elapsed_time = 0.16, catspeed = 1.0
   	self.x = self.x + elapsed_time * 10 * (1-@cat.speed)
   	if self.x < 0
   		self.y = 0

@@ -18,7 +18,7 @@ class Actor
     @x, @y = x, y
   end
 
-  def update elapsed_time = 0.16
+  def update elapsed_time = 0.16, catspeed = 1.0
   end
 
   def draw window, dx, dy
