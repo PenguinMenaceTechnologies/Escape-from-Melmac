@@ -68,13 +68,14 @@ class Terrain
 	end
 
 	def draw(window, dx, dy)
-		red = Gosu::Color.argb(0xffff0000)
+		lightbrown = Gosu::Color.argb(0xff8a5600)
+		darkbrown = Gosu::Color.argb(0xff4a2500)
 		if (@terrainBuffer[@offset] == nil)
 			return
 		end 
 		i = 0
 		while i < window.width do
-			window.draw_line(i, window.height, red, i, window.height / 1.5 - (@terrainBuffer[i + @offset] * (window.height / 4)), red)
+			window.draw_line(i, window.height, lightbrown, i, window.height / 1.5 - (@terrainBuffer[i + @offset] * (window.height / 4)), darkbrown)
 			i += 1
 		end
 	end
