@@ -54,10 +54,10 @@ class GameWindow < Gosu::Window
 
 	# Override ineherited update mehtod
 	def update
-		elapsed_time = 0.16 * @cat.speed
+		elapsed_time = 0.16
 		@gameObjects.each do |a|
 		  if defined? a.update
-            a.update elapsed_time
+            a.update elapsed_time, @cat.speed
           end
 		end
 	end
@@ -65,10 +65,10 @@ class GameWindow < Gosu::Window
 	def rainbow x, y, dx, dy
 		i = 0
 		until i >= x do
-			@rainbow_table[i] = @rainbow_table[i + MagicNumbers::SCROLL_SPEED]
+			@rainbow_table[i] = @rainbow_table[i + MagicNumbers::SCROLL_SPEED * @cat.speed]
 		    i += 1
 		end
-		i = x - MagicNumbers::SCROLL_SPEED
+		i = x - MagicNumbers::SCROLL_SPEED * @cat.speed
 		until i > x do
 		  @rainbow_table[i] = y
 		  i += 1
@@ -80,7 +80,7 @@ class GameWindow < Gosu::Window
 		    end
 		    i += 1
 	    end
-	    @rainbow_offset += MagicNumbers::SCROLL_SPEED
+	    @rainbow_offset += MagicNumbers::SCROLL_SPEED * @cat.speed
 	end
 
 	# Override inherited draw method

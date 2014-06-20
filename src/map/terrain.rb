@@ -28,11 +28,14 @@ class Terrain
 	end
 
 	def get_height x = 0
+		if @terrainBuffer[x + @offset] == nil
+			return 0
+		end
         return (@terrainBuffer[x + @offset] * @window.height / 4) - @window.height / 6
 	end
 
-	def update(elapsedTime)
-		@offset += 5 * elapsedTime / 0.16
+	def update(elapsedTime, catspeed)
+		@offset += 5 * elapsedTime / 0.16 * catspeed
 
 		if (@offset > @phaseBuffer[0])
 			@offset -= @phaseBuffer[0]
