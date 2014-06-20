@@ -1,7 +1,9 @@
 class Actor
   attr_reader :type
-  attr_reader :x
-  attr_reader :y
+  attr_accessor :x
+  attr_accessor :y
+  attr_accessor :vel_x
+  attr_accessor :vel_y
    
   def initialize window, img, sound, type
     @image = Gosu::Image.new(window, img, false)
@@ -20,6 +22,6 @@ class Actor
   end
 
   def draw window
-    @image.draw_rot(@x, window.height / 2 - @y, ZOrder::Player, @angle)
+    @image.draw_rot(@x, window.height / 2 - @y, 1, @angle)
   end
 end
