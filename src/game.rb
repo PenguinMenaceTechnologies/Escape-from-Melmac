@@ -33,6 +33,7 @@ class GameWindow < Gosu::Window
 		@gameObjects = Array.new
 		@rainbow_table = Array.new
 		@rainbow_image = Gosu::Image.new(self, "../resources/graphics/rainbow.png", false)
+		@background = Gosu::Image.new(self, "../resources/graphics/background.png", true)
 		@rainbow_offset = 0
 		self.caption = caption
 
@@ -49,7 +50,6 @@ class GameWindow < Gosu::Window
 
 	# Override ineherited update mehtod
 	def update
-		@background = Gosu::Image.new(self, backgroundImage, true)
 		elapsed_time = 0.16
 		@gameObjects.each do |a|
 		  if defined? a.update
@@ -91,7 +91,7 @@ class GameWindow < Gosu::Window
 		end
 		if (@background)
 			#puts "Background image width: #{@background.width} height: #{@background.height}"
-        	@background.draw(dx, dy, 0)
+        	@background.draw(dx - 5, dy - 5, 0, 0.5, 0.5)#@background.width / @width, @background.height / @height)
         end
 		rainbow @cat.x, @cat.y, dx, dy
         @gameObjects.each do |a|
