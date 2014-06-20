@@ -26,7 +26,7 @@ class GameWindow < Gosu::Window
 
 		# Set the current state to main menu
 		@currentState = Menu.new(self)
-		@terrain = Terrain.new
+		@terrain = Terrain.new self
 	end
 
     def addGameObject gameObject
@@ -38,7 +38,7 @@ class GameWindow < Gosu::Window
 		@background = Gosu::Image.new(self, backgroundImage, true)
 		elapsed_time = 0.16
 		@gameObjects.each do |a|
-		  if defined? a.draw
+		  if defined? a.update
             a.update elapsed_time
           end
 		end

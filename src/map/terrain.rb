@@ -7,10 +7,11 @@ end
 class Terrain
 	attr_reader :terrainBuffer
 
-	def initialize(randomness = 1)
+	def initialize(window, randomness = 1)
 		@randomness = randomness
 		@terrainBuffer = Array.new(MagicNumbers::BUFFER_SIZE)
 		fillBuffer()
+		window.addGameObject self
 	end
 
 	def fillBuffer
