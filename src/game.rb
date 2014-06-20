@@ -20,23 +20,25 @@ class GameWindow < Gosu::Window
 		super(width, height, false)
 		@width = width
 		@height = height
-		@actors = Array.new
+		@gameObjects = Array.new
 		self.caption = caption
 
 		# Set the current state to main menu
 		@currentState = Menu.new(self)
 	end
 
-    def addActor actor
-    	@actors[@actors.length] = actor
+    def addGameObject gameObject
+    	@gameObjects[@gameObjects.length] = gameObject
     end
 
 	# Override ineherited update mehtod
 	def update
 		@background = Gosu::Image.new(self, backgroundImage, true)
 		elapsed_time = 0.16
-		@actors.each do |a|
-          a.update elapsed_time
+		@gameObjects.each do |a|
+		  if defined? a.draw
+            a.update elapsed_time
+          end
 		end
 	end
 
@@ -46,8 +48,10 @@ class GameWindow < Gosu::Window
 			#puts "Background image width: #{@background.width} height: #{@background.height}"
         	@background.draw(0, 0, 0, 0.2, 0.2)
         end
-        @actors.each do |a|
-          a.draw
+        @gameObjects.each do |a|
+          if defined? a.draw
+            a.draw self
+          end
 		end
 	end
 end

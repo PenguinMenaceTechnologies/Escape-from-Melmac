@@ -9,7 +9,7 @@ class Actor
     @x = @y = @vel_x = @vel_y = @angle = 0.0
     @score = 0
     @type = type
-    window.addActor self
+    window.addGameObject self
   end
 
   def warp(x, y)
@@ -19,7 +19,7 @@ class Actor
   def update elapsed_time = 0.16
   end
 
-  def draw
+  def draw window
     @image.draw_rot(@x, window.height / 2 - @y, ZOrder::Player, @angle)
   end
 end
