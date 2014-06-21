@@ -42,9 +42,11 @@ class GameWindow < Gosu::Window
 		@width = width
 		@height = height
 		@gameObjects = Array.new
+        @lasagna_counter = 0
 		self.caption = caption
 
 		# Set the current state to main menu
+		@currentState = Loader.new self, @width, @height, @lasagna_counter
 		@currentState = Running.new self, @width, @height
 	end
 
