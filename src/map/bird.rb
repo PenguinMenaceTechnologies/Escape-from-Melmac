@@ -44,7 +44,7 @@ class Bird < Item
     	@sprites[@current_sprite].draw(self.x + dx, window.height / 2 - self.y + dy, 3, 3, 3)
   	end
 
-  	def cat_action cat
+  	def cat_action cat, state
   		cat.gravity *= MagicNumbers::BIRD_GRAVITY
   	end
 end

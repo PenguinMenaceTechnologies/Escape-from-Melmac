@@ -33,7 +33,7 @@ class Gameover < State
 		if @i < 60 * 2
 			text = "Gameover"
 		elsif @i < 60 * 4
-			text = "Garfield was too fat to escape."
+			text = "Garfield was too fat to escape, because you ate #{@lasagna_counter} lasagna."
 		elsif @i < 60 * 10
 			text = "Putting garfield on diet."
 		elsif @i < 60 * 14

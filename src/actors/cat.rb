@@ -24,6 +24,7 @@ class Cat < Actor
   attr_accessor :speed
   attr_accessor :boooom
   attr_accessor :gravity
+  attr_accessor :lasagna_counter
 
   def initialize window, img, sound, terrain, lasagna_counter
     super window, img, sound, "cat"
@@ -38,6 +39,7 @@ class Cat < Actor
     @contact_with_terrain = MagicNumbers::CONTACT_WITH_TERRAIN
     @contact_delay = MagicNumbers::CONTACT_DELAY
     @contact_iter = 0
+    @jump = Gosu::Sample.new(window, "../resources/sounds/jump_01.wav")
 
     # cat is ready
     puts "miau"
@@ -48,7 +50,7 @@ class Cat < Actor
       @speed += MagicNumbers::SPEEDUP * elapsed_time
     end
 
-    if @gravity < MagicNumbers::GRAVITY
+    if @gravity > MagicNumbers::GRAVITY
       @gravity += MagicNumbers::GRAVITY_GROW
     end
     
@@ -126,12 +128,13 @@ class Cat < Actor
     if active and @contact_with_terrain
       self.vel_y += MagicNumbers::JUMP
       @contact_with_terrain = false
+      @jump.play
     end
   end
 
   def accelerate_down active = true
   	if active
-      @accelerate = 1
+      @accelerate = 4
     else
 	    @accelerate = 0
     end
