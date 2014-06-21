@@ -7,7 +7,7 @@ class Gameover < State
 		@lasagna_counter = lasagna_counter
 		@i = 1
 		@cat_image = Gosu::Image.new(window, "../resources/graphics/garfield_sliding.png", false)
-		@alf_image = Gosu::Image.new(window, "../resources/graphics/alf.png", false)
+		#@alf_image = Gosu::Image.new(window, "../resources/graphics/alf.png", false)
 		@rainbow_image = Gosu::Image.new(window, "../resources/graphics/rainbow.png", false)
     	@font = Gosu::Font.new(window, Gosu::default_font_name, 30)
         @music = Gosu::Song.new("../resources/music/intro.ogg")
