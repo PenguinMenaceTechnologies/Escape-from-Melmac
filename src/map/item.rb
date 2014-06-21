@@ -8,7 +8,9 @@ class Item
   def initialize window, img, sound, type, terrain
     @image = Gosu::Image.new(window, img, false)
     @beep = Gosu::Sample.new(window, sound)
-    @x = @y = @width = @height = 0.0
+    @x = @y = 0.0
+    @width = @image.width
+    @height = @image.height
     @type = type
     @terrain = terrain
     @window = window
@@ -23,7 +25,12 @@ class Item
   end
 
   def collides x, y
-    
+    curr_x = x - @x
+    curr_y = y - @y
+    if (Math::sqrt(curr_x * curr_x + curr_y * curr_y) < @width)
+      return true
+    end
+    return false
   end
 
   def update elapsed_time = 0.16, catspeed = 1.0

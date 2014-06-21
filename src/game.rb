@@ -21,6 +21,7 @@ require './map/item.rb'
 require './map/schroedingerbox.rb'
 require './map/bird.rb'
 require './map/lasagna.rb'
+require './map/explosion.rb'
 
 
 module MagicNumbers
@@ -57,6 +58,7 @@ class GameWindow < Gosu::Window
         @lasagna = Lasagna.new self, "../resources/graphics/lasagna.png", "../resources/music/cantina_band.ogg", @terrain
         @box = SchroedingerBox.new self, "../resources/graphics/box.png", "../resources/music/cantina_band.ogg", @terrain
         @bird = Bird.new self, "../resources/graphics/bird_sprite.png", "../resources/music/cantina_band.ogg", @terrain
+        @explosion = Explosion.new self, "../resources/graphics/explosion_sprite.png", "../resources/music/cantina_band.ogg"
 	end
 
     def addGameObject gameObject
@@ -79,6 +81,12 @@ class GameWindow < Gosu::Window
 		@gameObjects.each do |a|
 		  if defined? a.update
             a.update elapsed_time, @cat.speed
+            if (a.is_a? Item)
+            	if (a.collides(@cat.x, @cat.y))
+            		@explosion.explode(a.x, a.y)
+            		a.spawnItem()
+            	end
+            end
           end
 		end
 	end
