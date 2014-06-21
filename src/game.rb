@@ -13,6 +13,7 @@ require './state.rb'
 require './point.rb'
 require './states/menu.rb'
 require './map/terrain.rb'
+require './map/grass.rb'
 require './actors/actor.rb'
 require './actors/schroedingerbox.rb'
 require './actors/bird.rb'
@@ -49,6 +50,7 @@ class GameWindow < Gosu::Window
 		# Set the current state to main menu
 		@currentState = Menu.new(self)
 		@terrain = Terrain.new self
+		@grass = Grass.new self
         @cat = Cat.new self, "../resources/graphics/garfield_sliding.png", "../resources/music/cantina_band.ogg", @terrain
         @alf = Alf.new self, "../resources/graphics/Earth.png", "../resources/music/cantina_band.ogg", @terrain, @cat
         @lasagna = Lasagna.new self, "../resources/graphics/lasagna.png", "../resources/music/cantina_band.ogg", @terrain

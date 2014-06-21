@@ -1,10 +1,10 @@
-
 module MagicNumbers
 	BUFFER_SIZE = 10
 	MIN_AMP, MAX_AMP = 0.8, 1.2
 	MIN_PHASE, MAX_PHASE = 400, 1000
 	SCROLL_SPEED = 5
 end
+
 class Terrain
 	attr_reader :terrainBuffer
 
@@ -87,7 +87,7 @@ class Terrain
 		end 
 		i = 0
 		while i < window.width do
-			window.draw_line(i, window.height, lightbrown, i, window.height / 1.5 - (@terrainBuffer[i + @offset] * (window.height / 4)), darkbrown)
+			window.draw_line(i, window.height, lightbrown, i, window.height / 1.5 - (@terrainBuffer[i + @offset] * (window.height / 4)), darkbrown, 2)
 			i += 1
 		end
 	end
