@@ -21,6 +21,7 @@ require './map/schroedingerbox.rb'
 require './map/bird.rb'
 require './map/lasagna.rb'
 require './map/explosion.rb'
+require './map/pfudor.rb'
 require './states/gameover.rb'
 require './states/running.rb'
 require './states/loader.rb'
@@ -47,6 +48,9 @@ class GameWindow < Gosu::Window
 
 		# Set the current state to main menu
 		@currentState = Loader.new self, @width, @height, @lasagna_counter
+        #for faster testing:
+        #@currentState = Running.new self, @width, @height, @lasagna_counter
+        #@currentState = Gameover.new self, @width, @height, @lasagna_counter
 	end
 
     def addGameObject gameObject

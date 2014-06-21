@@ -1,3 +1,7 @@
+module MagicNumbers
+    LASAGNA_COUNTER_POS_Y = 10
+end
+
 class Running < State
 
     attr_accessor :lasagna_counter
@@ -27,7 +31,7 @@ class Running < State
 
 		@terrain = Terrain.new window
 		@grass = Grass.new window
-
+		@pfudor = Pfudor.new window, "../resources/graphics/pfudor.png"
         @cat = Cat.new window, "../resources/graphics/garfield_sliding.png", "../resources/sounds/cat_spawn.wav", @terrain, @lasagna_counter
         @alf = Alf.new window, "../resources/graphics/alf_sprite.png", "../resources/sounds/cat_iek.wav", @terrain, @cat
         @lasagna = Lasagna.new window, "../resources/graphics/lasagna.png", "../resources/sounds/Explosion.wav", @terrain
@@ -159,6 +163,6 @@ class Running < State
 		end
 
         text = "lasagna-counter: #{@lasagna_counter}"
-        @font.draw(text, 10, @window.height, 4, 1.0, 1.0, 0xffffff00)
+        @font.draw(text, 10, MagicNumbers::LASAGNA_COUNTER_POS_Y, 4, 1.0, 1.0, 0xffffff00)
 	end
 end
