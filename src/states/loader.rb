@@ -6,6 +6,8 @@ class Loader < State
 		@lasagna_counter = lasagna_counter
 		@i = 1
 		@cat_image = Gosu::Image.new(window, "../resources/graphics/garfield_sliding.png", false)
+		@lasagna_image = Gosu::Image.new(window, "../resources/graphics/lasagna.png", false)
+		@pfudor_image = Gosu::Image.new(window, "../resources/graphics/pfudor.png", false)
 		@alf_image = Gosu::Image.new(window, "../resources/graphics/alf_sprite.png", false, 0, 0, 97, 117)
 		@rainbow_image = Gosu::Image.new(window, "../resources/graphics/rainbow.png", false)
     	@font = Gosu::Font.new(window, Gosu::default_font_name, 30)
@@ -16,6 +18,7 @@ class Loader < State
         @music.play(true)
         @has_spawned = false
         @has_ieked = false
+        @lasagnas = Array.new
 
 		@backgroundScaleX = (10 + width) / @crash_image.width.to_f
 		@backgroundScaleY = (10 + height) / @crash_image.height.to_f
@@ -49,6 +52,10 @@ class Loader < State
 			end
 		end
 
+		if @i > 60 * 10 and rand(0..100) < 2
+			@lasagnas[@lasagnas.length] = @width
+		end
+
 		if @i < 60 * 20
 		  x = 0
 		  t = @i * @window.width / (60.0 * 20.0)
@@ -62,7 +69,20 @@ class Loader < State
 		    @cat_image.draw_rot(@width / 2, @height / 2 + Math.sin(0.05*(x+t))*10, 3 + 40, 0)
 		  elsif @i >= 60 * 16
 		  	@alf_image.draw_rot((@i - 60 * 16) * 4, @height / 2 + Math.sin(0.05*(x+t))*10, 3 + 40, 0)
-		  	@cat_image.draw_rot(@width / 2 + (@i - 60 * 16) * 4, @height / 2 + Math.sin(0.05*(x+t))*10, 3 + 40, 0)
+		  	@pfudor_image.draw_rot((@i - 60 * 16) * 4 - 200, @height / 2 + Math.sin(0.05*(x+t)).abs*10, 3 + 40, 0)
+		  	@cat_image.draw_rot(@width / 2 + (@i - 60 * 16) * 4, @height / 2 + Math.sin(0.1*(x+t))*10, 3 + 40, 0)
+		  end
+
+		  ite = @lasagnas.length - 3
+		  until ite < 0
+		  	dx = @width / 2 + (@i - 60 * 16) * 4
+		  	if @lasagnas[ite] < dx + 10
+		  		@lasagnas[ite] = -100
+		  	end
+
+		  	@lasagna_image.draw_rot(@lasagnas[ite], @height / 2 + Math.sin(0.05*(x+t))*10, 3 + 40, 0)
+		  	@lasagnas[ite] = @lasagnas[ite]-1
+		  	ite -= 1
 		  end
     	  @font.draw(text, 10, @window.height-40, 4, 1.0, 1.0, 0xffffff00)
         else
