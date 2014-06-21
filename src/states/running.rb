@@ -51,6 +51,8 @@ class Running < State
     	if @window.button_down? Gosu::KbDown
       		puts "Down"
       		@cat.accelerate_down
+    	else
+    		@cat.accelerate_down false
     	end
 
 		elapsed_time = 0.16

@@ -2,7 +2,7 @@ module MagicNumbers
     ACCELERATE = 0
     ELAPSED_TIME = 0.16
     CATSPEED = 1.0
-    ALF_ACCELERATION_FAKTOR = 10
+    ALF_ACCELERATION_FAKTOR = 50
     ALF_X = 60
 end
 class Alf < Actor
@@ -21,8 +21,8 @@ class Alf < Actor
   	else
   		self.y = @terrain.get_height(self.x) + MagicNumbers::ALF_X
   	end
-    if self.x < -100
-      self.x = -100
+    if self.x < -200
+      self.x = -200
     end
   	if self.x > @cat.x - 30 # magic value 30+20 = 50 pixel dist to cat
   		@cat.eaten_by_alf

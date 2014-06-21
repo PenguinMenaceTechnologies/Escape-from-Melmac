@@ -49,7 +49,7 @@ class Cat < Actor
       @speed += MagicNumbers::SPEEDUP * elapsed_time
     end
 
-    if @gravity < MagicNumbers::GRAVITY
+    if @gravity > MagicNumbers::GRAVITY
       @gravity += MagicNumbers::GRAVITY_GROW
     end
     
@@ -133,7 +133,7 @@ class Cat < Actor
 
   def accelerate_down active = true
   	if active
-      @accelerate = 1
+      @accelerate = 4
     else
 	    @accelerate = 0
     end
