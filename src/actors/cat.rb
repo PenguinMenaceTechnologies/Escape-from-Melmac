@@ -38,6 +38,7 @@ class Cat < Actor
     @contact_with_terrain = MagicNumbers::CONTACT_WITH_TERRAIN
     @contact_delay = MagicNumbers::CONTACT_DELAY
     @contact_iter = 0
+    @jump = Gosu::Sample.new(window, "../resources/sounds/jump_01.wav")
 
     # cat is ready
     puts "miau"
@@ -126,6 +127,7 @@ class Cat < Actor
     if active and @contact_with_terrain
       self.vel_y += MagicNumbers::JUMP
       @contact_with_terrain = false
+      @jump.play
     end
   end
 
