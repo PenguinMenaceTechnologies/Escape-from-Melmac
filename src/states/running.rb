@@ -8,7 +8,6 @@ class Running < State
         window.backgroundImage = "../resources/graphics/background.png"
         @music = Gosu::Song.new("../resources/music/cantina_band.ogg")
         # infinite cantina band loop
-        @music.play(true)
 		@rainbow_offset = 0
 
 
@@ -30,6 +29,7 @@ class Running < State
         @box = SchroedingerBox.new window, "../resources/graphics/box.png", "../resources/music/cantina_band.ogg", @terrain
         @bird = Bird.new window, "../resources/graphics/bird_sprite.png", "../resources/music/cantina_band.ogg", @terrain
         @explosion = Explosion.new window, "../resources/graphics/explosion_sprite.png", "../resources/music/cantina_band.ogg"
+        @music.play(true)
     end
 
 	def next() 

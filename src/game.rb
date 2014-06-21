@@ -37,14 +37,14 @@ class GameWindow < Gosu::Window
 
 
 	def initialize(width, height, caption)
-		super(width, height, false)
+		super(width, height, true)
 		@width = width
 		@height = height
 		@gameObjects = Array.new
 		self.caption = caption
 
 		# Set the current state to main menu
-		@currentState = Running.new self, @width, @height
+		@currentState = Loader.new self, @width, @height
 	end
 
     def addGameObject gameObject

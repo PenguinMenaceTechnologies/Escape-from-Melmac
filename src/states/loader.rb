@@ -6,9 +6,9 @@ class Loader < State
 		@i = 1
 		@rainbow_image = Gosu::Image.new(window, "../resources/graphics/rainbow.png", false)
     	@font = Gosu::Font.new(window, Gosu::default_font_name, 30)
-        #@music = Gosu::Song.new("../resources/music/crash.ogg")
+        @music = Gosu::Song.new("../resources/music/intro.ogg")
 		@crash_image = Gosu::Image.new(window, "../resources/graphics/crash.png", false)
-		@crash_plays = false
+        @music.play(true)
 
 		@backgroundScaleX = (10 + width) / @crash_image.width.to_f
 		@backgroundScaleY = (10 + height) / @crash_image.height.to_f
@@ -16,7 +16,7 @@ class Loader < State
 
 
 	def draw()
-		if @i > 60 * 22
+		if @i > 60 * 23
 			 @window.currentState = Running.new @window, @width, @height
 		end
 
@@ -45,10 +45,6 @@ class Loader < State
 		  end
     	  @font.draw(text, 10, @window.height-40, 4, 1.0, 1.0, 0xffffff00)
         else
-        	if @crash_plays == false
-        		#@music.play(true)
-        		@crash_plays = true
-        	end
         	@crash_image.draw(- 5, - 5, 0, @backgroundScaleX, @backgroundScaleY)#@background.width / @width, @background.height / @height)
         end
 
