@@ -1,3 +1,7 @@
+module MagicNumbers
+    LASAGNA_SPEED = 2.0
+end
+
 class Lasagna < Item
 
 	def initialize (window, img, sound, terrain)
@@ -5,6 +9,6 @@ class Lasagna < Item
 	end
 
     def cat_action cat
-        cat.speed += 1.0
+        cat.speed += MagicNumbers::LASAGNA_SPEED
     end
 end

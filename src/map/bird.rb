@@ -1,3 +1,7 @@
+module MagicNumbers
+	BIRD_GRAVITY = 2.0
+end
+
 class Bird < Item
 	def initialize (window, img, sound, terrain)
 		super(window, img, sound, "Bird", terrain)
@@ -42,6 +46,6 @@ class Bird < Item
   	end
 
   	def cat_action cat
-  		cat.gravity = 1.0
+  		cat.gravity = MagicNumbers::BIRD_GRAVITY
   	end
 end
