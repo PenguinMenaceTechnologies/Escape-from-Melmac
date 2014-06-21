@@ -1,5 +1,5 @@
 module MagicNumbers
-	BIRD_GRAVITY = 2.0
+	BIRD_GRAVITY = 0.5
 end
 
 class Bird < Item
@@ -46,6 +46,6 @@ class Bird < Item
   	end
 
   	def cat_action cat
-  		cat.gravity = MagicNumbers::BIRD_GRAVITY
+  		cat.gravity *= MagicNumbers::BIRD_GRAVITY
   	end
 end
