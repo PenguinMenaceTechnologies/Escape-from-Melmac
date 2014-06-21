@@ -1,5 +1,6 @@
 module MagicNumbers
-  GRAVITY = -4.81
+  GRAVITY = -5.0
+  GRAVITY_GROW = -0.2
   ACCELERATE = 0
   SPEED = 1.0
   ELAPSED_TIME = 0.16
@@ -11,7 +12,7 @@ module MagicNumbers
   MIN_X_SPEED_TERRAIN = 0.3
   MIN_X_SPEED_AIR = 0.5
   PI = 3.1416
-  DOWNHILL_FORCE_FACTOR = 0.05
+  DOWNHILL_FORCE_FACTOR = 1.0
   MAGIC_ANGLE = 30
   CONTACT_WITH_TERRAIN = false
   CONTACT_DELAY = 10
@@ -20,8 +21,9 @@ end
 
 class Cat < Actor
 
-  attr_reader :speed
+  attr_accessor :speed
   attr_accessor :boooom
+  attr_accessor :gravity
 
   def initialize window, img, sound, terrain
     super window, img, sound, "cat"
@@ -45,6 +47,11 @@ class Cat < Actor
     if @speed < MagicNumbers::SPEED
       @speed += MagicNumbers::SPEEDUP * elapsed_time
     end
+
+    if @gravity < MagicNumbers::GRAVITY
+      @gravity += MagicNumbers::GRAVITY_GROW
+    end
+    
   	prev_y = self.y
   	self.vel_y += @gravity * elapsed_time
   	self.vel_y -= @accelerate

@@ -33,6 +33,9 @@ class Item
     return false
   end
 
+  def cat_action
+  end
+
   def update elapsed_time = 0.16, catspeed = 1.0
     if (@sin > 2* Math::PI)
       @sin = 0
