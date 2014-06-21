@@ -140,5 +140,7 @@ class Cat < Actor
   def eaten_by_alf
   	puts "*fauch*"
   	puts "iiiek"
+    play_sound
+    @window.currentState = Gameover.new @window, @width, @height
   end
 end

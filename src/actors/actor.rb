@@ -25,6 +25,10 @@ class Actor
   def update elapsed_time = 0.16, catspeed = 1.0
   end
 
+  def play_sound
+    @beep.play
+  end
+
   def draw window, dx, dy
     @image.draw_rot(@x + dx, window.height / 2 - @y + dy, 3, @angle)
     color1 = Gosu::Color.argb(0xffff0000)

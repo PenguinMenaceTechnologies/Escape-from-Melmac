@@ -19,6 +19,10 @@ class Item
     window.addGameObject self
   end
 
+  def play_sound
+    @beep.play
+  end
+
   def spawnItem()
     self.x = rand(1280..@terrain.size()*0.6)
     self.y = rand(@terrain.get_height(self.x) + 40 ..@window.height / 2)
