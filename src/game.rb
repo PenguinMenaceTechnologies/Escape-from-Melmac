@@ -62,6 +62,16 @@ class GameWindow < Gosu::Window
 
 	# Override ineherited update mehtod
 	def update
+    	if button_down? Gosu::KbUp
+      		puts "up"
+      		@cat.jump
+    	end
+
+    	if button_down? Gosu::KbDown
+      		puts "Down"
+      		@cat.accelerate_down
+    	end
+
 		elapsed_time = 0.16
 		@gameObjects.each do |a|
 		  if defined? a.update

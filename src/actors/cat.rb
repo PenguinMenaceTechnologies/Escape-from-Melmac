@@ -13,6 +13,9 @@ module MagicNumbers
   PI = 3.1416
   DOWNHILL_FORCE_FACTOR = 0.05
   MAGIC_ANGLE = 30
+  CONTACT_WITH_TERRAIN = false
+  CONTACT_DELAY = 10
+  JUMP = 40
 end
 
 class Cat < Actor
@@ -30,6 +33,9 @@ class Cat < Actor
   	@speed = MagicNumbers::SPEED
   	@terrain = terrain
     @local_angle = 0
+    @contact_with_terrain = MagicNumbers::CONTACT_WITH_TERRAIN
+    @contact_delay = MagicNumbers::CONTACT_DELAY
+    @contact_iter = 0
 
     # cat is ready
     puts "miau"
@@ -47,11 +53,15 @@ class Cat < Actor
     end
   	self.y += self.vel_y * elapsed_time * 2
 
+    puts @contact_with_terrain
+
     # collide with terrain
   	if self.y < @terrain.get_height(self.x) + MagicNumbers::CAT_Y 
       self.y = @terrain.get_height(self.x) + MagicNumbers::CAT_Y 
       #self.vel_y = @terrain. + 1.0
       self.vel_y = @terrain.getCurrentSlope(self.x)
+
+      @contact_with_terrain = true
 
       prev_angle = @angle
       puts @angle
@@ -66,6 +76,11 @@ class Cat < Actor
       end
       ###
   	else
+      @contact_iter += 1
+      if @contact_iter >= @contact_delay
+        @contact_with_terrain = false
+        @contact_iter = 0
+      end
       @boooom = false
     end
 
@@ -98,6 +113,13 @@ class Cat < Actor
   # flip a cat (required for the flip paradoxon)
   def flip
     @local_angle = 180
+  end
+
+  def jump active = true
+    if active and @contact_with_terrain
+      self.vel_y += MagicNumbers::JUMP
+      @contact_with_terrain = false
+    end
   end
 
   def accelerate_down active = true
