@@ -1,6 +1,6 @@
 module Grassvalues
 	BUFFER_SIZE = 10
-	MIN_PHASE, MAX_PHASE = 300, 600
+	MIN_PHASE, MAX_PHASE = 600, 1000
 	SCROLL_SPEED = 3
 end
 
@@ -60,7 +60,7 @@ class Grass
 		
 		i = 0
 		while i < currentPhase do
-			@grass_buffer.push(0.7 * Math::sin((2 * Math::PI / currentPhase) * i))
+			@grass_buffer.push(0.3 * Math::sin((2 * Math::PI / currentPhase) * i))
 			i += 1
 		end
 	end  
