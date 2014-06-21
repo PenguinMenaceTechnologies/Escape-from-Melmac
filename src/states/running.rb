@@ -31,6 +31,7 @@ class Running < State
 
 		@terrain = Terrain.new window
 		@grass = Grass.new window
+
         @cat = Cat.new window, "../resources/graphics/garfield_sliding.png", "../resources/sounds/cat_spawn.wav", @terrain, @lasagna_counter
         @alf = Alf.new window, "../resources/graphics/alf_sprite.png", "../resources/sounds/cat_iek.wav", @terrain, @cat
         @lasagna = Lasagna.new window, "../resources/graphics/lasagna.png", "../resources/sounds/Explosion.wav", @terrain
@@ -57,6 +58,8 @@ class Running < State
     	if @window.button_down? Gosu::KbDown
       		puts "Down"
       		@cat.accelerate_down
+    	else
+    		@cat.accelerate_down false
     	end
 
 		elapsed_time = 0.16

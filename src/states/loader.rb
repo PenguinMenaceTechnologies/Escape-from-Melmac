@@ -32,7 +32,7 @@ class Loader < State
 		if @i < 60 * 2
 			text = "Googling cat images"
 		elsif @i < 60 * 10
-			text = "Loading graphics for fat garfield. (This may take a while, he's fat...)"
+			text = "Loading graphics for garfield. (This may take a while, he's fat...)"
 		elsif @i < 60 * 13
 			if @has_spawned == false
 				@has_spawned = true
