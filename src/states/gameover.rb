@@ -44,8 +44,9 @@ class Gameover < State
 
 		if @i < 60 * 20
 		  @cat_image.draw_rot(@cat_x, @window.height / 2 - @cat_y, 3, @cat_angle)
-		  @cat_angle += 5
-		  @cat_y -= 2
+		  @cat_angle += 10
+		  @cat_y -= 3
+		  @cat_x += 2
 		  x = 0
 		  t = (@width-@i) * @width / (60.0 * 20.0)
 		  until x > t
