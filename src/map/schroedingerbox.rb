@@ -11,7 +11,7 @@ class SchroedingerBox < Item
 		super(window, img, sound, "Schroedinger\'s Box", terrain)
 	end
 
-    def cat_action cat
+    def cat_action cat, state
         dice1 = rand(0.0..1.0)
         #dice2 = rand(0..10)
         if dice1 < 5

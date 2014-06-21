@@ -8,7 +8,8 @@ class Lasagna < Item
 		super(window, img, sound, "Lasagna", terrain)
 	end
 
-    def cat_action cat
+    def cat_action cat, state
+        state.lasagna_counter += 1
         cat.speed += MagicNumbers::LASAGNA_SPEED
     end
 end

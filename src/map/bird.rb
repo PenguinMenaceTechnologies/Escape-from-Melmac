@@ -14,7 +14,6 @@ class Bird < Item
 		@sprites.push(Gosu::Image.new(window, img, false, 32, 0, @width, @height))
 		@sprites.push(Gosu::Image.new(window, img, false, 64, 0, @width, @height))
 		@sprites.push(Gosu::Image.new(window, img, false, 96, 0, @width, @height))
-		@BB_RADIUS = 96
 	end
 
 	def update(elapsedTime, catspeed)
@@ -45,7 +44,7 @@ class Bird < Item
     	@sprites[@current_sprite].draw(self.x + dx, window.height / 2 - self.y + dy, 3, 3, 3)
   	end
 
-  	def cat_action cat
+  	def cat_action cat, state
   		cat.gravity *= MagicNumbers::BIRD_GRAVITY
   	end
 end

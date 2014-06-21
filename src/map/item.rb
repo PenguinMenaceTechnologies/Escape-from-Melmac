@@ -37,7 +37,7 @@ class Item
     return false
   end
 
-  def cat_action cat
+  def cat_action cat, state
   end
 
   def update elapsed_time = 0.16, catspeed = 1.0
