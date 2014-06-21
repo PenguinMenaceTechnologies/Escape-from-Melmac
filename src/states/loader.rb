@@ -1,8 +1,9 @@
 class Loader < State
-	def initialize window, width, height
+	def initialize window, width, height, lasagna_counter
 		@window = window
 		@width = width
 		@height = height
+		@lasagna_counter = lasagna_counter
 		@i = 1
 		@cat_image = Gosu::Image.new(window, "../resources/graphics/garfield_sliding.png", false)
 		@alf_image = Gosu::Image.new(window, "../resources/graphics/alf.png", false)
@@ -23,7 +24,7 @@ class Loader < State
 
 	def draw()
 		if @i > 60 * 23
-			 @window.currentState = Running.new @window, @width, @height
+			 @window.currentState = Running.new @window, @width, @height, @lasagna_counter
 		end
 
 		text = "Hi"
