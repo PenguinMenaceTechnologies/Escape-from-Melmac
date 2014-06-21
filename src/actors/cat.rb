@@ -29,6 +29,7 @@ class Cat < Actor
   	self.warp 300, 50
   	@speed = MagicNumbers::SPEED
   	@terrain = terrain
+    #@local_angle = 0
 
     # cat is ready
     puts "miau"
@@ -79,7 +80,9 @@ class Cat < Actor
       self.vel_y = MagicNumbers::MAX_Y_SPEED_UP
     end
 
-    @angle = 180.0/MagicNumbers::PI*Math.atan(-self.vel_y) / 2
+    @local_angle = 180.0/MagicNumbers::PI*Math.atan(-self.vel_y) / 2
+
+    @angle += (@local_angle - @angle) * 0.1
     if @speed < MagicNumbers::MIN_X_SPEED_AIR
       @speed = MagicNumbers::MIN_X_SPEED_AIR
     end
