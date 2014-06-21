@@ -6,7 +6,7 @@ class Running < State
 		@height = height
         #@nextState = Running
         window.backgroundImage = "../resources/graphics/background.png"
-        @music = Gosu::Song.new("../resources/music/cantina_band.ogg")
+        @music = Gosu::Song.new("../resources/music/copycat.ogg")
         # infinite cantina band loop
 		@rainbow_offset = 0
 
