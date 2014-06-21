@@ -44,7 +44,7 @@ class GameWindow < Gosu::Window
 		self.caption = caption
 
 		# Set the current state to main menu
-		@currentState = Loader.new self, @width, @height
+		@currentState = Running.new self, @width, @height
 	end
 
     def addGameObject gameObject

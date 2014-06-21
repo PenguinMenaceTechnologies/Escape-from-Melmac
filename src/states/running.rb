@@ -56,7 +56,7 @@ class Running < State
 		  if defined? a.update
             a.update elapsed_time, @cat.speed
             if (a.is_a? Item)
-            	if (a.collides(@cat.x + @cat.width / 2, @cat.y - @cat.height / 2, @cat.width / 2))
+            	if (a.collides(@cat.x, @cat.y, @cat.width / 2))
             		@explosion.explode(a.x, a.y)
                     a.cat_action(@cat)
             		a.spawnItem()
@@ -66,15 +66,29 @@ class Running < State
 		end
 	end
 
+	def interpolate a, b, t
+		if a == nil
+			return b
+		end
+		if b == nil
+			return a
+		end
+		return a + (b-a) * t
+	end
+
 	def rainbow x, y, dx, dy
 		i = 0
 		until i >= x do
 			@rainbow_table[i] = @rainbow_table[i + MagicNumbers::SCROLL_SPEED * @cat.speed * 1.15]
 		    i += 1
 		end
-		i = x - MagicNumbers::SCROLL_SPEED * @cat.speed
+		i = x - MagicNumbers::SCROLL_SPEED * @cat.speed - 1
+		dif = x - i
 		until i > x do
-		  @rainbow_table[i] = y
+			a = y
+			b = @rainbow_table[x-dif-1]
+			c = (x-i) / dif.to_f
+		  @rainbow_table[i] = interpolate a, b, c
 		  i += 1
 	    end
 		i = 0
