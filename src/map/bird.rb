@@ -1,9 +1,6 @@
 class Bird < Item
 	def initialize (window, img, sound, terrain)
-		super(window, img, sound, "Bird")
-		@window = window
-		@terrain = terrain
-		@sin = 0
+		super(window, img, sound, "Bird", terrain)
 		@last_sprite = 0
 		@current_sprite = 0
 		@sprites = Array.new
@@ -13,13 +10,6 @@ class Bird < Item
 		@sprites.push(Gosu::Image.new(window, img, false, 96, 0, 32, 32))
 		@BB_RADIUS = 96
 	end
-
-	def spawnLasagne()
-		self.x = rand(1280..@terrain.size())
-		self.y = rand(@terrain.get_height(self.x) + 40 ..@window.height / 2)
-	end
-
-	
 
 	def update(elapsedTime, catspeed)
 		if (@last_sprite > 0.25)
@@ -39,7 +29,7 @@ class Bird < Item
 
 		self.y += Math::sin(@sin) 
 		if (self.x < 0)
-			spawnLasagne()
+			self.spawnItem()
 		else
 			self.x -= 5 * elapsedTime / 0.16 * catspeed
 		end

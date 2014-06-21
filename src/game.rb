@@ -18,9 +18,9 @@ require './actors/actor.rb'
 require './actors/cat.rb'
 require './actors/alf.rb'
 require './map/item.rb'
-require './actors/schroedingerbox.rb'
-require './actors/bird.rb'
-require './actors/lasagna.rb'
+require './map/schroedingerbox.rb'
+require './map/bird.rb'
+require './map/lasagna.rb'
 
 
 module MagicNumbers

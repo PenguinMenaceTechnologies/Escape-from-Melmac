@@ -5,20 +5,41 @@ class Item
   attr_accessor :width
   attr_accessor :height
    
-  def initialize window, img, sound, type
+  def initialize window, img, sound, type, terrain
     @image = Gosu::Image.new(window, img, false)
     @beep = Gosu::Sample.new(window, sound)
-    @x = @y = @vel_x = @width = @height = 0.0
+    @x = @y = @width = @height = 0.0
     @type = type
+    @terrain = terrain
+    @window = window
+    @sin = 0
+    spawnItem()
     window.addGameObject self
   end
 
-  def collides(x, y)
+  def spawnItem()
+    self.x = rand(1280..@terrain.size())
+    self.y = rand(@terrain.get_height(self.x) + 40 ..@window.height / 2)
+  end
+
+  def collides x, y
     
   end
 
   def update elapsed_time = 0.16, catspeed = 1.0
+    if (@sin > 2* Math::PI)
+      @sin = 0
+    else
+      @sin += 0.05
+    end
+    @y += Math::sin(@sin) 
+    if (@x < 0)
+      spawnItem()
+    else
+      @x -= 5 * elapsed_time / 0.16 * catspeed
+    end
   end
+  
 
   def draw window, dx, dy
     @image.draw(@x + dx, window.height / 2 - @y + dy, 3)
