@@ -1,8 +1,8 @@
 
 module MagicNumbers
 	BUFFER_SIZE = 10
-	MIN_AMP, MAX_AMP = 0.7, 1.3
-	MIN_PHASE, MAX_PHASE = 400, 800
+	MIN_AMP, MAX_AMP = 0.8, 1.2
+	MIN_PHASE, MAX_PHASE = 400, 1000
 	SCROLL_SPEED = 5
 end
 class Terrain
@@ -19,6 +19,15 @@ class Terrain
 		window.addGameObject self
 	end
 
+	def size()
+		i = 0
+		size = 0
+		while i < MagicNumbers::BUFFER_SIZE do
+			size += @phaseBuffer[i]
+			i += 1
+		end
+		return size
+	end
 	def initTerrain()
 		i = 0
 		while i < MagicNumbers::BUFFER_SIZE do
