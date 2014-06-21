@@ -33,7 +33,7 @@ class Item
     return false
   end
 
-  def cat_action
+  def cat_action cat
   end
 
   def update elapsed_time = 0.16, catspeed = 1.0
