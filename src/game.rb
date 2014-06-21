@@ -39,7 +39,7 @@ class GameWindow < Gosu::Window
 
 
 	def initialize(width, height, caption)
-		super(width, height, false)
+		super(width, height, true)
 		@width = width
 		@height = height
 		@gameObjects = Array.new
