@@ -36,6 +36,8 @@ class GameWindow < Gosu::Window
 		@gameObjects = Array.new
 		@rainbow_table = Array.new
 		@rainbow_image = Gosu::Image.new(self, "../resources/graphics/rainbow.png", false)
+		@groundeffect_table = Array.new
+		@groundeffect_image = Gosu::Image.new(self, "../resources/graphics/groundeffect.png", false)
 		@background = Gosu::Image.new(self, "../resources/graphics/background.png", true)
 		@backgroundScaleX = (10 + width) / @background.width.to_f
 		@backgroundScaleY = (10 + height) / @background.height.to_f
@@ -71,7 +73,7 @@ class GameWindow < Gosu::Window
 	def rainbow x, y, dx, dy
 		i = 0
 		until i >= x do
-			@rainbow_table[i] = @rainbow_table[i + MagicNumbers::SCROLL_SPEED * @cat.speed]
+			@rainbow_table[i] = @rainbow_table[i + MagicNumbers::SCROLL_SPEED * @cat.speed * 1.15]
 		    i += 1
 		end
 		i = x - MagicNumbers::SCROLL_SPEED * @cat.speed
@@ -80,13 +82,41 @@ class GameWindow < Gosu::Window
 		  i += 1
 	    end
 		i = 0
-		until i > x do
+		until i >= x do
 			if @rainbow_table[i] != nil
-		       @rainbow_image.draw_rot(i + dx, self.height / 2 - @rainbow_table[i] + dy + Math.sin(0.1*(i+@rainbow_offset))*5, 1, 0)
+				shift = (0xFF * ((i-0.0) / (x-0.0))).to_i
+				color = 0x00FFFFFF | (shift << 24)
+		        @rainbow_image.draw_rot(i + dx, self.height / 2 - @rainbow_table[i] + dy + Math.sin(0.1*(i+@rainbow_offset))*5, 1, 0, 0.5, 0.5, 1, 1, color)
 		    end
 		    i += 1
 	    end
-	    @rainbow_offset += MagicNumbers::SCROLL_SPEED * @cat.speed
+	    @rainbow_offset += MagicNumbers::SCROLL_SPEED
+	end
+
+	def groundeffect x, y, dx, dy
+		i = x - 100
+		until i >= x do
+			@groundeffect_table[i] = @groundeffect_table[i + MagicNumbers::SCROLL_SPEED * @cat.speed * 1.15]
+		    i += 1
+		end
+		i = x - MagicNumbers::SCROLL_SPEED * @cat.speed
+		until i > x do
+		  if y < @terrain.get_height(x) + 15 and rand(0..100) < 10
+		    @groundeffect_table[i] = y
+		  else
+		  	@groundeffect_table[i] = nil
+		  end
+		  i += 1
+	    end
+		i = 0
+		until i >= x do
+			if @groundeffect_table[i] != nil
+				shift = (0xFF * ((i-(x-100.0)) / (100.0))).to_i
+				color = 0x00FFFFFF | (shift << 24)
+		        @groundeffect_image.draw_rot(i + dx, self.height / 2 - @groundeffect_table[i] + dy + Math.sin(0.1*(i+@rainbow_offset))*1, 1, 0, 0.5, 0.5, 1, 1, color)
+		    end
+		    i += 1
+	    end
 	end
 
 	# Override inherited draw method
@@ -104,6 +134,7 @@ class GameWindow < Gosu::Window
         	@background.draw(dx - 5, dy - 5, 0, @backgroundScaleX, @backgroundScaleY)#@background.width / @width, @background.height / @height)
         end
 		rainbow @cat.x, @cat.y, dx, dy
+        groundeffect @cat.x, @cat.y-50, dx, dy
         @gameObjects.each do |a|
           if defined? a.draw
             a.draw window, dx, dy

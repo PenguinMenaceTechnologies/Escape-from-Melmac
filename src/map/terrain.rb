@@ -44,7 +44,7 @@ class Terrain
 	end
 
 	def update(elapsedTime, catspeed)
-		@offset += 5 * elapsedTime / 0.16 * catspeed
+		@offset += MagicNumbers::SCROLL_SPEED * catspeed
 
 		if (@offset > @phaseBuffer[0])
 			@offset -= @phaseBuffer[0]
