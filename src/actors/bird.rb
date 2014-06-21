@@ -1,11 +1,10 @@
-class Lasagna < Actor
-
+class Bird < Actor
 	def initialize (window, img, sound, terrain)
-		super(window, img, sound, "Lasagna")
+		super(window, img, sound, "Bird")
 		@window = window
 		@terrain = terrain
 		@sin = 0
-		spawnLasagne()
+		@lastSprite = 0
 	end
 
 	def spawnLasagne()
@@ -18,6 +17,7 @@ class Lasagna < Actor
 	end
 
 	def update(elapsedTime, catspeed)
+
 		if (@sin > 2* Math::PI)
 			@sin = 0
 		else

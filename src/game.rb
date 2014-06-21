@@ -15,6 +15,7 @@ require './states/menu.rb'
 require './map/terrain.rb'
 require './actors/actor.rb'
 require './actors/schroedingerbox.rb'
+require './actors/bird.rb'
 require './actors/lasagna.rb'
 require './actors/cat.rb'
 require './actors/alf.rb'
@@ -50,6 +51,7 @@ class GameWindow < Gosu::Window
         @alf = Alf.new self, "../resources/graphics/Earth.png", "../resources/music/cantina_band.ogg", @terrain, @cat
         @lasagna = Lasagna.new self, "../resources/graphics/lasagna.png", "../resources/music/cantina_band.ogg", @terrain
         @box = SchroedingerBox.new self, "../resources/graphics/box.png", "../resources/music/cantina_band.ogg", @terrain
+        @bird = Bird.new self, "../resources/graphics/bird_sprite.png", "../resources/music/cantina_band.ogg", @terrain
 	end
 
     def addGameObject gameObject
