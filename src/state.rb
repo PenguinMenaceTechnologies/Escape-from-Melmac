@@ -14,6 +14,9 @@ class State
 		puts "Going to next state #{nextState}"
 	end
 
+	def update
+	end
+	
 	def exit()
 		puts "State #{self.name} exited."
 	end

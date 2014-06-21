@@ -21,8 +21,9 @@ require './map/schroedingerbox.rb'
 require './map/bird.rb'
 require './map/lasagna.rb'
 require './map/explosion.rb'
-require './states/menu.rb'
 require './states/running.rb'
+require './states/loader.rb'
+require './states/menu.rb'
 
 
 module MagicNumbers
@@ -30,7 +31,7 @@ module MagicNumbers
 end
 
 class GameWindow < Gosu::Window
-	attr_reader :currentState
+	attr_accessor :currentState
 	attr_accessor :gameObjects
 	attr_accessor :backgroundImage
 
@@ -43,7 +44,7 @@ class GameWindow < Gosu::Window
 		self.caption = caption
 
 		# Set the current state to main menu
-		@currentState = Running.new self, @width, @height
+		@currentState = Loader.new self, @width, @height
 	end
 
     def addGameObject gameObject
