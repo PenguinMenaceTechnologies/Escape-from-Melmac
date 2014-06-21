@@ -24,6 +24,7 @@ class Cat < Actor
   attr_accessor :speed
   attr_accessor :boooom
   attr_accessor :gravity
+  attr_accessor :lasagna_counter
 
   def initialize window, img, sound, terrain, lasagna_counter
     super window, img, sound, "cat"

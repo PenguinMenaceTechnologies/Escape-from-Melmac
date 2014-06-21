@@ -1,5 +1,7 @@
 class Running < State
 
+    attr_accessor :lasagna_counter
+
 	def initialize window, width, height, lasagna_counter
 		@window = window
 		@width = width
@@ -21,6 +23,7 @@ class Running < State
 		@backgroundScaleY = (10 + height) / @background.height.to_f
 		puts @backgroundScaleX
 		puts @backgroundScaleY
+        @font = Gosu::Font.new(window, Gosu::default_font_name, 30)
 
 		@terrain = Terrain.new window
 		@grass = Grass.new window
@@ -60,7 +63,8 @@ class Running < State
             	if (a.collides(@cat.x, @cat.y, @cat.width / 2))
             		@explosion.explode(a.x, a.y)
             		a.play_sound
-                    a.cat_action(@cat)
+                    a.cat_action(@cat, self)
+                    @cat.lasagna_counter = @lasagna_counter
             		a.spawnItem()
             	end
             end
@@ -150,5 +154,8 @@ class Running < State
             a.draw @window, dx, dy
           end
 		end
+
+        text = "lasagna-counter: #{@lasagna_counter}"
+        @font.draw(text, 10, @window.height, 4, 1.0, 1.0, 0xffffff00)
 	end
 end
