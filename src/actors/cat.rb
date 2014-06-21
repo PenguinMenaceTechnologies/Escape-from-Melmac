@@ -12,7 +12,7 @@ module MagicNumbers
   MIN_X_SPEED_AIR = 0.5
   PI = 3.1416
   DOWNHILL_FORCE_FACTOR = 0.05
-  MAGIC_ANGLE = 60
+  MAGIC_ANGLE = 30
 end
 
 class Cat < Actor
@@ -29,7 +29,7 @@ class Cat < Actor
   	self.warp 300, 50
   	@speed = MagicNumbers::SPEED
   	@terrain = terrain
-    #@local_angle = 0
+    @local_angle = 0
 
     # cat is ready
     puts "miau"
@@ -80,7 +80,9 @@ class Cat < Actor
       self.vel_y = MagicNumbers::MAX_Y_SPEED_UP
     end
 
-    @local_angle = 180.0/MagicNumbers::PI*Math.atan(-self.vel_y) / 2
+    if (@local_angle < 180)
+      @local_angle = 180.0/MagicNumbers::PI*Math.atan(-self.vel_y) / 2
+    end
 
     @angle += (@local_angle - @angle) * 0.1
     if @speed < MagicNumbers::MIN_X_SPEED_AIR
@@ -95,7 +97,7 @@ class Cat < Actor
 
   # flip a cat (required for the flip paradoxon)
   def flip
-    self.angle =  self.angle + 180
+    @local_angle = 180
   end
 
   def accelerate_down active = true
