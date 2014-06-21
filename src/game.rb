@@ -84,6 +84,7 @@ class GameWindow < Gosu::Window
             if (a.is_a? Item)
             	if (a.collides(@cat.x + @cat.width / 2, @cat.y - @cat.height / 2, @cat.width / 2))
             		@explosion.explode(a.x, a.y)
+                    a.cat_action
             		a.spawnItem()
             	end
             end
