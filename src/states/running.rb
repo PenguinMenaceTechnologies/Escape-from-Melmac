@@ -32,9 +32,9 @@ class Running < State
 		@pfudor = Pfudor.new window, "../resources/graphics/pfudor.png"
         @cat = Cat.new window, "../resources/graphics/garfield_sliding.png", "../resources/sounds/cat_spawn.wav", @terrain, @lasagna_counter
         @alf = Alf.new window, "../resources/graphics/alf_sprite.png", "../resources/sounds/cat_iek.wav", @terrain, @cat
-        @lasagna = Lasagna.new window, "../resources/graphics/lasagna.png", "../resources/sounds/Explosion.wav", @terrain
+        @lasagna = Lasagna.new window, "../resources/graphics/lasagna.png", "../resources/sounds/whoosh1.wav", @terrain
         @box = SchroedingerBox.new window, "../resources/graphics/box.png", "../resources/sounds/Explosion.wav", @terrain
-        @bird = Bird.new window, "../resources/graphics/bird_sprite.png", "../resources/sounds/Explosion.wav", @terrain
+        @bird = Bird.new window, "../resources/graphics/bird_sprite.png", "../resources/sounds/peacockscream.ogg", @terrain
         @explosion = Explosion.new window, "../resources/graphics/explosion_sprite.png", "../resources/sounds/Explosion.wav"
         @music.play(true)
     end
