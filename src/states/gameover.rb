@@ -3,6 +3,7 @@ class Gameover < State
 		@window = window
 		@width = width
 		@height = height
+		puts @width.to_s + " " + @height.to_s
 		@i = 1
 		@cat_image = Gosu::Image.new(window, "../resources/graphics/garfield_sliding.png", false)
 		@alf_image = Gosu::Image.new(window, "../resources/graphics/alf.png", false)
@@ -41,13 +42,13 @@ class Gameover < State
 		end
 
 		if @i < 60 * 20
-		  x = @width
-		  t = @i * @width / (60.0 * 20.0)
+		  x = 0
+		  t = (@width-@i) * @width / (60.0 * 20.0)
 		  until x > t
 			shift = (0xFF * ((x-0.0) / (t-0.0))).to_i
 			color = 0x00FFFFFF | (shift << 24)
 			@rainbow_image.draw_rot(x, @height / 2 + Math.sin(0.05*(x+t))*10, 3, 0, 0.5, 0.5, 1, 1, color)
-			x -= 1
+			x += 1
 		  end
     	  @font.draw(text, 10, @window.height-40, 4, 1.0, 1.0, 0xffffff00)
         else

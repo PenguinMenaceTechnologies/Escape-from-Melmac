@@ -141,6 +141,6 @@ class Cat < Actor
   	puts "*fauch*"
   	puts "iiiek"
     play_sound
-    @window.currentState = Gameover.new @window, @width, @height
+    @window.currentState = Gameover.new @window, @window.width, @window.height
   end
 end
