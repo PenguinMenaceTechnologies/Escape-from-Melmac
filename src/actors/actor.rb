@@ -22,6 +22,6 @@ class Actor
   end
 
   def draw window, dx, dy
-    @image.draw_rot(@x + dx, window.height / 2 - @y + dy, 2, @angle)
+    @image.draw_rot(@x + dx, window.height / 2 - @y + dy, 3, @angle)
   end
 end
