@@ -2,7 +2,7 @@ class Menu < State
 
 	def initialize(window)
         #@nextState = Running
-        window.backgroundImage = "../resources/graphics/background.png"
+        window.backgroundImage = "../resources/graphics/menu.jpg"
         @music = Gosu::Song.new("../resources/music/cantina_band.ogg")
         # infinite cantina band loop
         @music.play(true)
