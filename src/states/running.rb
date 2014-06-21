@@ -1,3 +1,7 @@
+module MagicNumbers
+    LASAGNA_COUNTER_POS_Y = 10
+end
+
 class Running < State
 
     attr_accessor :lasagna_counter
@@ -156,6 +160,6 @@ class Running < State
 		end
 
         text = "lasagna-counter: #{@lasagna_counter}"
-        @font.draw(text, 10, @window.height, 4, 1.0, 1.0, 0xffffff00)
+        @font.draw(text, 10, MagicNumbers::LASAGNA_COUNTER_POS_Y, 4, 1.0, 1.0, 0xffffff00)
 	end
 end
