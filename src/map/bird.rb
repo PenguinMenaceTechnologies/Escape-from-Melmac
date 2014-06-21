@@ -1,3 +1,7 @@
+module MagicNumbers
+	BIRD_GRAVITY = 0.5
+end
+
 class Bird < Item
 	def initialize (window, img, sound, terrain)
 		super(window, img, sound, "Bird", terrain)
@@ -39,5 +43,9 @@ class Bird < Item
 
 	def draw window, dx, dy
     	@sprites[@current_sprite].draw(self.x + dx, window.height / 2 - self.y + dy, 3, 3, 3)
+  	end
+
+  	def cat_action cat
+  		cat.gravity *= MagicNumbers::BIRD_GRAVITY
   	end
 end
