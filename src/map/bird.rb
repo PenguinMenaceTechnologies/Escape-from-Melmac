@@ -1,5 +1,5 @@
 module MagicNumbers
-	BIRD_GRAVITY = 0.5
+	BIRD_GRAVITY = 0.4
 end
 
 class Bird < Item
