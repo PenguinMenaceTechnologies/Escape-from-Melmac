@@ -1,15 +1,18 @@
 class Gameover < State
-	def initialize window, width, height, lasagna_counter
+	def initialize window, width, height, lasagna_counter, cat_x, cat_y, cat_angle
 		@window = window
 		@width = width
 		@height = height
 		@lasagna_counter = lasagna_counter
+		@cat_x = cat_x
+		@cat_y = cat_y
+		@cat_angle = cat_angle
 		@i = 1
 		@cat_image = Gosu::Image.new(window, "../resources/graphics/garfield_sliding.png", false)
 		#@alf_image = Gosu::Image.new(window, "../resources/graphics/alf.png", false)
 		@rainbow_image = Gosu::Image.new(window, "../resources/graphics/rainbow.png", false)
     	@font = Gosu::Font.new(window, Gosu::default_font_name, 30)
-        @music = Gosu::Song.new("../resources/music/intro.ogg")
+        @music = Gosu::Song.new("../resources/music/outro.ogg")
 		@crash_image = Gosu::Image.new(window, "../resources/graphics/crash.png", false)
 		@cat_spawn = Gosu::Sample.new("../resources/sounds/cat_spawn.wav")
 		@cat_iek = Gosu::Sample.new("../resources/sounds/cat_iek.wav")
@@ -27,8 +30,6 @@ class Gameover < State
 			 @window.currentState = Crash.new
 		end
 
-		text = "Hi"
-
 		if @i < 60 * 2
 			text = "Gameover"
 		elsif @i < 60 * 4
@@ -42,6 +43,9 @@ class Gameover < State
 		end
 
 		if @i < 60 * 20
+		  @cat_image.draw_rot(@cat_x, @window.height / 2 - @cat_y, 3, @cat_angle)
+		  @cat_angle += 5
+		  @cat_y -= 2
 		  x = 0
 		  t = (@width-@i) * @width / (60.0 * 20.0)
 		  until x > t

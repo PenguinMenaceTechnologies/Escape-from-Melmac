@@ -139,6 +139,6 @@ class Cat < Actor
 
   def eaten_by_alf
     play_sound
-    @window.currentState = Gameover.new @window, @window.width, @window.height, @lasagna_counter
+    @window.currentState = Gameover.new @window, @window.width, @window.height, @lasagna_counter, self.x, self.y, self.angle
   end
 end
