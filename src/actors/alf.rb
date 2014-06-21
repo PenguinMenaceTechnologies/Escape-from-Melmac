@@ -18,7 +18,7 @@ class Alf < Actor
     @cat = cat
   	@accelerate = 0
   	@terrain = terrain
-  	self.warp 0, 0
+  	self.warp -200, 0
   end
 
   def update elapsed_time = MagicNumbers::ELAPSED_TIME, catspeed = MagicNumbers::CATSPEED
