@@ -40,4 +40,8 @@ class Bird < Item
 	def draw window, dx, dy
     	@sprites[@current_sprite].draw(self.x + dx, window.height / 2 - self.y + dy, 3, 3, 3)
   	end
+
+  	def cat_action cat
+  		cat.gravity = 1.0
+  	end
 end
