@@ -98,7 +98,7 @@ class GameWindow < Gosu::Window
 			if @rainbow_table[i] != nil
 				shift = (0xFF * ((i-0.0) / (x-0.0))).to_i
 				color = 0x00FFFFFF | (shift << 24)
-		        @rainbow_image.draw_rot(i + dx, self.height / 2 - @rainbow_table[i] + dy + Math.sin(0.1*(i+@rainbow_offset))*5, 1, 0, 0.5, 0.5, 1, 1, color)
+		        @rainbow_image.draw_rot(i + dx, self.height / 2 - @rainbow_table[i] + dy + Math.sin(0.1*(i+@rainbow_offset))*5, 3, 0, 0.5, 0.5, 1, 1, color)
 		    end
 		    i += 1
 	    end
