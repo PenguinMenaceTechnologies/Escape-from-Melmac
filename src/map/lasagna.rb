@@ -5,6 +5,6 @@ class Lasagna < Item
 	end
 
     def cat_action cat
-        cat.speed +=
+        cat.speed += 1.0
     end
 end
