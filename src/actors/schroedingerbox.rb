@@ -1,8 +1,8 @@
-class Lasagna < Actor
+class SchroedingerBox < Actor
 
 	def initialize (window, img, sound, terrain)
-		super(window, img, sound, "Lasagna")
-		@image = @image = Gosu::Image.new(window, "../resources/graphics/lasagna.png", false)
+		super(window, img, sound, "Schroedinger\'s Box")
+		@image = @image = Gosu::Image.new(window, "../resources/graphics/box.png", false)
 		@window = window
 		@terrain = terrain
 		@sin = 0
