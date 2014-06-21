@@ -3,7 +3,6 @@ class Gameover < State
 		@window = window
 		@width = width
 		@height = height
-		puts @width.to_s + " " + @height.to_s
 		@lasagna_counter = lasagna_counter
 		@i = 1
 		@cat_image = Gosu::Image.new(window, "../resources/graphics/garfield_sliding.png", false)

@@ -25,8 +25,6 @@ class Running < State
 		@background = Gosu::Image.new(window, "../resources/graphics/background.png", true)
 		@backgroundScaleX = (10 + width) / @background.width.to_f
 		@backgroundScaleY = (10 + height) / @background.height.to_f
-		puts @backgroundScaleX
-		puts @backgroundScaleY
         @font = Gosu::Font.new(window, Gosu::default_font_name, 30)
 
 		@terrain = Terrain.new window
@@ -51,12 +49,10 @@ class Running < State
 
 	def update
         if @window.button_down? Gosu::KbUp
-      		puts "up"
       		@cat.jump
     	end
 
     	if @window.button_down? Gosu::KbDown
-      		puts "Down"
       		@cat.accelerate_down
     	else
     		@cat.accelerate_down false

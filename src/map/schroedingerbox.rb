@@ -16,13 +16,9 @@ class SchroedingerBox < Item
         #dice2 = rand(0..10)
         if dice1 < 5
             speedup = rand(MagicNumbers::MIN_QUANTUM_SPEED..MagicNumbers::MAX_QUANTUM_SPEED)
-            puts "speedup: "
-            puts speedup
             cat.speed *= speedup
         else
             grav_mod = rand(MagicNumbers::MIN_QUANTUM_GRAVITY..MagicNumbers::MAX_QUANTUM_GRAVITY)
-            puts "grav_mod: "
-            puts grav_mod
             cat.gravity *= grav_mod
         end
     end

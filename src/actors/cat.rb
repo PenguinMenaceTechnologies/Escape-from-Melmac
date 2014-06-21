@@ -62,8 +62,6 @@ class Cat < Actor
     end
   	self.y += self.vel_y * elapsed_time * 2
 
-    puts @contact_with_terrain
-
     # collide with terrain
   	if self.y < @terrain.get_height(self.x) + MagicNumbers::CAT_Y 
       self.y = @terrain.get_height(self.x) + MagicNumbers::CAT_Y 
@@ -73,7 +71,6 @@ class Cat < Actor
       @contact_with_terrain = true
 
       prev_angle = @angle
-      puts @angle
       tmp_angle = 180.0/MagicNumbers::PI*Math.atan2(-self.vel_y, 1)
       ###
       @speed += - self.vel_y*MagicNumbers::DOWNHILL_FORCE_FACTOR
@@ -141,8 +138,6 @@ class Cat < Actor
   end
 
   def eaten_by_alf
-  	puts "*fauch*"
-  	puts "iiiek"
     play_sound
     @window.currentState = Gameover.new @window, @window.width, @window.height, @lasagna_counter
   end
