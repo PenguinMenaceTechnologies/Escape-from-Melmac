@@ -4,6 +4,7 @@ class Actor
   attr_accessor :y
   attr_accessor :width
   attr_accessor :height
+  attr_accessor :angle
   attr_accessor :vel_x
   attr_accessor :vel_y
    
