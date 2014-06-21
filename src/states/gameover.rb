@@ -1,9 +1,10 @@
 class Gameover < State
-	def initialize window, width, height
+	def initialize window, width, height, lasagna_counter
 		@window = window
 		@width = width
 		@height = height
 		puts @width.to_s + " " + @height.to_s
+		@lasagna_counter = lasagna_counter
 		@i = 1
 		@cat_image = Gosu::Image.new(window, "../resources/graphics/garfield_sliding.png", false)
 		@alf_image = Gosu::Image.new(window, "../resources/graphics/alf.png", false)

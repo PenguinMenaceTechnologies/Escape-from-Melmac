@@ -25,9 +25,9 @@ class Cat < Actor
   attr_accessor :boooom
   attr_accessor :gravity
 
-  def initialize window, img, sound, terrain
+  def initialize window, img, sound, terrain, lasagna_counter
     super window, img, sound, "cat"
-
+    @lasagna_counter = lasagna_counter
     @gravity = MagicNumbers::GRAVITY # trololo
   	@accelerate = MagicNumbers::ACCELERATE
     @window = window
@@ -141,6 +141,6 @@ class Cat < Actor
   	puts "*fauch*"
   	puts "iiiek"
     play_sound
-    @window.currentState = Gameover.new @window, @window.width, @window.height
+    @window.currentState = Gameover.new @window, @window.width, @window.height, @lasagna_counter
   end
 end
