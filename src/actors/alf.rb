@@ -18,7 +18,7 @@ class Alf < Actor
     @cat = cat
   	@accelerate = 0
   	@terrain = terrain
-  	self.warp -200, 0
+  	self.warp -400, 0
   end
 
   def update elapsed_time = MagicNumbers::ELAPSED_TIME, catspeed = MagicNumbers::CATSPEED
@@ -36,8 +36,8 @@ class Alf < Actor
   	else
   		self.y = @terrain.get_height(self.x) + MagicNumbers::ALF_X
   	end
-    if self.x < -200
-      self.x = -200
+    if self.x < -400
+      self.x = -400
     end
   	if self.x > @cat.x - 30 # magic value 30+20 = 50 pixel dist to cat
   		@cat.eaten_by_alf
@@ -47,8 +47,8 @@ class Alf < Actor
 
   def draw window, dx, dy
     @sprites[@current_sprite].draw_rot(@x + dx, window.height / 2 - @y + dy, 3, self.angle)
-    color1 = Gosu::Color.argb(0xffff0000)
-    color2 = Gosu::Color.argb(0xff00ff00)
-    window.draw_quad(@x, -@y + window.height / 2, color1, @x + 10, -@y + window.height / 2, color1, @x + 10, -@y + window.height / 2 +10, color2, @x, -@y + window.height / 2 +10, color1, 4)
+    #color1 = Gosu::Color.argb(0xffff0000)
+    #color2 = Gosu::Color.argb(0xff00ff00)
+    #window.draw_quad(@x, -@y + window.height / 2, color1, @x + 10, -@y + window.height / 2, color1, @x + 10, -@y + window.height / 2 +10, color2, @x, -@y + window.height / 2 +10, color1, 4)
   end
 end

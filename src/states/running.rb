@@ -91,7 +91,10 @@ class Running < State
 			@rainbow_table[i] = @rainbow_table[i + MagicNumbers::SCROLL_SPEED * @cat.speed * 1.15]
 		    i += 1
 		end
-		i = x - MagicNumbers::SCROLL_SPEED * @cat.speed - 1
+		i = x - MagicNumbers::SCROLL_SPEED * @cat.speed * 1.15 - 1
+		if i < 0
+			i = 0
+		end
 		dif = x - i
 		until i > x do
 			a = y
