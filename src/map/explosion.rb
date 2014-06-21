@@ -37,9 +37,7 @@ class Explosion < Actor
 	end
 
 	def draw window, dx, dy
-
 		if @is_running
-
     		@sprites[@current_sprite].draw(@x + dx, window.height / 2 - @y + dy, 3)
     	end
   	end

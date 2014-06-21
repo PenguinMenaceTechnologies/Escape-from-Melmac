@@ -3,11 +3,13 @@ class Bird < Item
 		super(window, img, sound, "Bird", terrain)
 		@last_sprite = 0
 		@current_sprite = 0
+		self.width = @image.width / 4
+    	self.height = @image.height
 		@sprites = Array.new
-		@sprites.push(Gosu::Image.new(window, img, false, 0 , 0, 32, 32))
-		@sprites.push(Gosu::Image.new(window, img, false, 32, 0, 32, 32))
-		@sprites.push(Gosu::Image.new(window, img, false, 64, 0, 32, 32))
-		@sprites.push(Gosu::Image.new(window, img, false, 96, 0, 32, 32))
+		@sprites.push(Gosu::Image.new(window, img, false, 0 , 0, @width, @height))
+		@sprites.push(Gosu::Image.new(window, img, false, 32, 0, @width, @height))
+		@sprites.push(Gosu::Image.new(window, img, false, 64, 0, @width, @height))
+		@sprites.push(Gosu::Image.new(window, img, false, 96, 0, @width, @height))
 		@BB_RADIUS = 96
 	end
 

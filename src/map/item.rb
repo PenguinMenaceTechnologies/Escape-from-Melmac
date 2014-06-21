@@ -20,14 +20,14 @@ class Item
   end
 
   def spawnItem()
-    self.x = rand(1280..@terrain.size())
+    self.x = rand(1280..@terrain.size()*0.6)
     self.y = rand(@terrain.get_height(self.x) + 40 ..@window.height / 2)
   end
 
-  def collides x, y
+  def collides x, y, other_radius
     curr_x = x - @x
     curr_y = y - @y
-    if (Math::sqrt(curr_x * curr_x + curr_y * curr_y) < @width)
+    if (Math::sqrt(curr_x * curr_x + curr_y * curr_y) < @width / 2 + other_radius)
       return true
     end
     return false
@@ -50,5 +50,8 @@ class Item
 
   def draw window, dx, dy
     @image.draw(@x + dx, window.height / 2 - @y + dy, 3)
+    color1 = Gosu::Color.argb(0xffff0000)
+    color2 = Gosu::Color.argb(0xff00ff00)
+    window.draw_quad(@x, -@y + window.height / 2, color1, @x + 10, -@y + window.height / 2, color1, @x + 10, -@y + window.height / 2 +10, color2, @x, -@y + window.height / 2 +10, color1, 4)
   end
 end

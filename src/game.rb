@@ -82,7 +82,7 @@ class GameWindow < Gosu::Window
 		  if defined? a.update
             a.update elapsed_time, @cat.speed
             if (a.is_a? Item)
-            	if (a.collides(@cat.x, @cat.y))
+            	if (a.collides(@cat.x + @cat.width / 2, @cat.y - @cat.height / 2, @cat.width / 2))
             		@explosion.explode(a.x, a.y)
             		a.spawnItem()
             	end
