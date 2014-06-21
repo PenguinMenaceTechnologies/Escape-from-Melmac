@@ -24,7 +24,7 @@ class Running < State
 		@terrain = Terrain.new window
 		@grass = Grass.new window
         @cat = Cat.new window, "../resources/graphics/garfield_sliding.png", "../resources/music/cantina_band.ogg", @terrain
-        @alf = Alf.new window, "../resources/graphics/Earth.png", "../resources/music/cantina_band.ogg", @terrain, @cat
+        @alf = Alf.new window, "../resources/graphics/alf.png", "../resources/music/cantina_band.ogg", @terrain, @cat
         @lasagna = Lasagna.new window, "../resources/graphics/lasagna.png", "../resources/music/cantina_band.ogg", @terrain
         @box = SchroedingerBox.new window, "../resources/graphics/box.png", "../resources/music/cantina_band.ogg", @terrain
         @bird = Bird.new window, "../resources/graphics/bird_sprite.png", "../resources/music/cantina_band.ogg", @terrain

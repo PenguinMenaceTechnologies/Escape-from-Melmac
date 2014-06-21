@@ -4,12 +4,14 @@ class Loader < State
 		@width = width
 		@height = height
 		@i = 1
+		@cat_image = Gosu::Image.new(window, "../resources/graphics/garfield_sliding.png", false)
+		@alf_image = Gosu::Image.new(window, "../resources/graphics/alf.png", false)
 		@rainbow_image = Gosu::Image.new(window, "../resources/graphics/rainbow.png", false)
     	@font = Gosu::Font.new(window, Gosu::default_font_name, 30)
         @music = Gosu::Song.new("../resources/music/intro.ogg")
 		@crash_image = Gosu::Image.new(window, "../resources/graphics/crash.png", false)
-		@cat_spawn = Gosu::Song.new("../resources/sounds/cat_spawn.wav")
-		@cat_iek = Gosu::Song.new("../resources/sounds/cat_iek.wav")
+		@cat_spawn = Gosu::Sample.new("../resources/sounds/cat_spawn.wav")
+		@cat_iek = Gosu::Sample.new("../resources/sounds/cat_iek.wav")
         @music.play(true)
         @has_spawned = false
         @has_ieked = false
@@ -54,6 +56,12 @@ class Loader < State
 			color = 0x00FFFFFF | (shift << 24)
 			@rainbow_image.draw_rot(x, @height / 2 + Math.sin(0.05*(x+t))*10, 3, 0, 0.5, 0.5, 1, 1, color)
 			x += 1
+		  end
+		  if @i > 60 * 10 and @i < 60 * 16
+		    @cat_image.draw_rot(@width / 2, @height / 2 + Math.sin(0.05*(x+t))*10, 3 + 40, 0)
+		  elsif @i >= 60 * 16
+		  	@alf_image.draw_rot((@i - 60 * 16) * 4, @height / 2 + Math.sin(0.05*(x+t))*10, 3 + 40, 0)
+		  	@cat_image.draw_rot(@width / 2 + (@i - 60 * 16) * 4, @height / 2 + Math.sin(0.05*(x+t))*10, 3 + 40, 0)
 		  end
     	  @font.draw(text, 10, @window.height-40, 4, 1.0, 1.0, 0xffffff00)
         else
