@@ -15,11 +15,12 @@ require './states/menu.rb'
 require './map/terrain.rb'
 require './map/grass.rb'
 require './actors/actor.rb'
+require './actors/cat.rb'
+require './actors/alf.rb'
+require './map/item.rb'
 require './actors/schroedingerbox.rb'
 require './actors/bird.rb'
 require './actors/lasagna.rb'
-require './actors/cat.rb'
-require './actors/alf.rb'
 
 
 module MagicNumbers

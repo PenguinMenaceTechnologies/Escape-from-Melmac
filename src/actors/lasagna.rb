@@ -1,4 +1,4 @@
-class Lasagna < Actor
+class Lasagna < Item
 
 	def initialize (window, img, sound, terrain)
 		super(window, img, sound, "Lasagna")
@@ -11,10 +11,6 @@ class Lasagna < Actor
 	def spawnLasagne()
 		self.x = rand(1280..@terrain.size())
 		self.y = rand(@terrain.get_height(self.x) + 40 ..@window.height / 2)
-	end
-
-	def collides(x, y)
-		
 	end
 
 	def update(elapsedTime, catspeed)

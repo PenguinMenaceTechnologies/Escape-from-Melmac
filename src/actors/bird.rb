@@ -1,4 +1,4 @@
-class Bird < Actor
+class Bird < Item
 	def initialize (window, img, sound, terrain)
 		super(window, img, sound, "Bird")
 		@window = window
