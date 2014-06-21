@@ -8,7 +8,8 @@ class Cat < Actor
 
     @gravity = -4.81 # trololo
   	@accelerate = 0
-  	self.warp 100, 50
+    @window = window
+  	self.warp 300, 50
   	@speed = 1.0
   	@terrain = terrain
 
@@ -35,12 +36,17 @@ class Cat < Actor
       self.vel_y = @terrain.getCurrentSlope(self.x)
 
       prev_angle = @angle
+      puts @angle
       tmp_angle = 180.0/3.1416*Math.atan2(-self.vel_y, 1)
       if (prev_angle-tmp_angle)*(prev_angle-tmp_angle) > 60*60
+        @boooom = true
         @speed *= 0.6
       end
-      @boooom = true
   	else
+      @boooom = false
+    end
+
+    if @boooom and rand(0..1000) < 25
       @boooom = false
     end
 
@@ -51,9 +57,9 @@ class Cat < Actor
       self.vel_y = 40
     end
 
-    @angle = 180.0/3.1416*Math.atan2(-self.vel_y, 1) / 2.0
-    if @speed < 0.1
-      @speed = 0.1
+    @angle = 180.0/3.1416*Math.atan(-self.vel_y)
+    if @speed < 0.5
+      @speed = 0.5
     end
   end
 
