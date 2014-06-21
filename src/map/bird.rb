@@ -14,7 +14,6 @@ class Bird < Item
 		@sprites.push(Gosu::Image.new(window, img, false, 32, 0, @width, @height))
 		@sprites.push(Gosu::Image.new(window, img, false, 64, 0, @width, @height))
 		@sprites.push(Gosu::Image.new(window, img, false, 96, 0, @width, @height))
-		@BB_RADIUS = 96
 	end
 
 	def update(elapsedTime, catspeed)
